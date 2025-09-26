@@ -51,7 +51,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 withCredentials([usernamePassword(credentialsId:'dockerhub', usernameVariable:'username', passwordVariable: 'password')]) {
-                        sh "echo $password| docker login -u $username -p --password-stdin"
+                        sh "echo $password| docker login -u $username --password-stdin"
                         dir('calculator-app') {
                             sh 'docker build -t calculator .'
                         }
