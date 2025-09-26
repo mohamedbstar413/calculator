@@ -12,7 +12,11 @@ pipeline{
                 sh './calculator-app/gradlew compileJava'
             }
         }
-        
+        stage('Unit Test'){
+            steps{
+                sh '.gradlew test'
+            }
+        }
     }
     
 }
