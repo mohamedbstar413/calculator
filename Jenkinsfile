@@ -51,18 +51,16 @@ pipeline {
         stage('Docker Build') {
             steps {
                 withCredentials([usernamePassword(credentialsId:'dockerhub', usernameVariable:'username', passwordVariable: 'password')]) {
-                    dir('calculator-app') {
-                        sh 'docker build -t calculator .'
-                    }
+                        sh "echo $username| docker login -u $username -p --password-stdin"
+                        dir('calculator-app') {
+                            sh 'docker build -t calculator .'
+                        }
                 }
             }
         }
         stage('Push To Docker hub') {
             steps {
                 dir('calculator-app') {
-                    withCredentials([usernamePassword(credentialsId:'dockerhub', usernameVariable:'username', passwordVariable: 'password')]) {
-                        sh "echo $username| docker login -u $username -p --password-stdin"
-                    }
                     //tag image
                     sh 'docker tag calculator mabdelsattar413/calculator'
                     //push image
