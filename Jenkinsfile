@@ -64,9 +64,9 @@ pipeline {
                     dir('calculator-app') {
                         sh "echo $password| docker login -u $username --password-stdin"
                         //tag image
-                        sh 'docker tag calculator mabdelsattar413/calculator'
+                        sh 'docker tag calculator bstar999/calculator'
                         //push image
-                        sh 'docker push mabdelsattar413/calculator'
+                        sh 'docker push bstar/calculator'
                     }
                 }
             }
