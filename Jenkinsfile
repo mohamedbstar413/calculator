@@ -60,11 +60,14 @@ pipeline {
         }
         stage('Push To Docker hub') {
             steps {
-                dir('calculator-app') {
-                    //tag image
-                    sh 'docker tag calculator mabdelsattar413/calculator'
-                    //push image
-                    sh 'docker push mabdelsattar413/calculator'
+                withCredentials([usernamePassword(credentialsId:'dockerhub', usernameVariable:'username', passwordVariable: 'password')]) {
+                    dir('calculator-app') {
+                        sh "echo $password| docker login -u $username --password-stdin"
+                        //tag image
+                        sh 'docker tag calculator mabdelsattar413/calculator'
+                        //push image
+                        sh 'docker push mabdelsattar413/calculator'
+                    }
                 }
             }
         }
