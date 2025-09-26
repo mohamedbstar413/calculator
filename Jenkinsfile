@@ -50,8 +50,10 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                dir('calculator-app') {
-                    sh 'docker build -t calculator .'
+                withCredentials([usernamePassword(credentialsId:'dockerhub', usernameVariable:'username', passwordVariable: 'password')]) {
+                    dir('calculator-app') {
+                        sh 'docker build -t calculator .'
+                    }
                 }
             }
         }
