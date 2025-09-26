@@ -66,7 +66,7 @@ pipeline {
                         //tag image
                         sh 'docker tag calculator bstar999/calculator'
                         //push image
-                        sh 'docker push bstar/calculator'
+                        sh 'docker push bstar999/calculator'
                     }
                 }
             }
