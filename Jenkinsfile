@@ -1,5 +1,8 @@
 pipeline{
     agent {label 'docker'}
+    triggers{
+        pollSCM('* * * * *')
+    }
     tools{
         gradle 'gradle'
     }
