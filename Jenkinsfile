@@ -12,12 +12,16 @@ pipeline{
         }
         stage('Compile'){
             steps{
-                sh 'gradle compileJava'
+                dir('calculator-app'){
+                    sh 'gradle compileJava'
+                }
             }
         }
         stage('Unit Test'){
             steps{
-                sh './calculator-app/gradlew test'
+                dir('calculator-app'){
+                    sh 'gradle test'
+                }
             }
         }
     }
