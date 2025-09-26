@@ -17,7 +17,7 @@ pipeline{
         }
         stage('Unit Test'){
             steps{
-                sh '.gradlew test'
+                sh './calculator-app/gradlew test'
             }
         }
     }
