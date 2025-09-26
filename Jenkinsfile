@@ -1,5 +1,8 @@
 pipeline{
     agent {label 'docker'}
+    tools{
+        gradle 'gradle'
+    }
 
     stages{
         stage('Checkout'){
